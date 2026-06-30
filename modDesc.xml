@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<modDesc descVersion="104">
+<modDesc descVersion="110">
     <author>Lisek</author>
     <version>1.1.0.0</version>
     <contributors>Az#4971, olaf.tnt</contributors>
-    <title>
-        <en>Upgrade Your Factory</en>
-        <pl>Ulepsz swoją fabrykę</pl>
-        <fr>Améliorez votre usine</fr>
-        <de>Verbessern Sie Ihre Fabrik</de>
-    </title>
+<title>
+    <en>Upgrade Your Factory</en>
+    <pl>Ulepsz swoją fabrykę</pl>
+    <fr>Améliorez votre usine</fr>
+    <de>Verbessern Sie Ihre Fabrik</de>
+    <it>Potenzia la Tua Fabbrica</it>
+</title>
     <description>
         <en>
-Upgrade your factories! This mod allows you to increase production speed and storage capacity, so you don’t need to place multiple identical factories.
+<![CDATA[Upgrade your factories! This mod allows you to increase production speed and storage capacity, so you don’t need to place multiple identical factories.
 
 Features:
 - Production chains now have levels that can be upgraded.
@@ -29,10 +30,10 @@ Changelog 1.1.0.0:
 - Added support for multiplayer mode
 - Updated savegame xml structure, solved issue with fillType indexes
 
-In case of any problems with the mod, please contact me via discord: lisekv1
+In case of any problems with the mod, please contact me via discord: lisekv1]]>
         </en>
         <pl>
-Ulepsz swoje fabryki! Ten mod pozwala zwiększać prędkość produkcji oraz pojemność magazynów, dzięki czemu nie musisz stawiać wielu takich samych fabryk.
+<![CDATA[Ulepsz swoje fabryki! Ten mod pozwala zwiększać prędkość produkcji oraz pojemność magazynów, dzięki czemu nie musisz stawiać wielu takich samych fabryk.
 
 Cechy:
 - Łańcuchy produkcyjne mają teraz poziomy, które można zwiększać.
@@ -49,10 +50,10 @@ Dodatkowe informacje:
 Changelog 1.1.0.0:
 - Dodano wsparcie dla trybu multiplayer
 
-W razie problemów z modem zapraszam do kontaktu poprzez discord: lisekv1
+W razie problemów z modem zapraszam do kontaktu poprzez discord: lisekv1]]>
 		</pl>
         <fr>
-Améliorez vos usines ! Ce mod vous permet d'augmenter la vitesse de production et la capacité de stockage, vous n'avez donc pas besoin de placer plusieurs usines identiques.
+<![CDATA[Améliorez vos usines ! Ce mod vous permet d'augmenter la vitesse de production et la capacité de stockage, vous n'avez donc pas besoin de placer plusieurs usines identiques.
 
 Fonctionnalités:
 - Les chaînes de production ont désormais des niveaux qui peuvent être améliorés.
@@ -69,10 +70,10 @@ Informations complémentaires:
 Changelog 1.1.0.0:
 - Ajout du support multijoueur mode
 
-Si vous avez des problèmes avec le mod, veuillez me contacter via discord: lisekv1
+Si vous avez des problèmes avec le mod, veuillez me contacter via discord: lisekv1]]>
 		</fr>
         <de>
-Verbessere deine Fabriken! Dieser Mod ermöglicht es Ihnen, die Produktionsgeschwindigkeit und die Lagerkapazität zu erhöhen, sodass Sie nicht mehrere identische Fabriken platzieren müssen.
+<![CDATA[Verbessere deine Fabriken! Dieser Mod ermöglicht es Ihnen, die Produktionsgeschwindigkeit und die Lagerkapazität zu erhöhen, sodass Sie nicht mehrere identische Fabriken platzieren müssen.
 
 Funktionen:
 - Produktionsketten haben jetzt Stufen, die aufgewertet werden können.
@@ -89,56 +90,84 @@ Zusatzinformation:
 Changelog 1.1.0.0:
 - Unterstützung für Multiplayer-Modus hinzugefügt
 
-Wenn Sie Probleme mit dem Mod haben, kontaktieren Sie mich bitte über Discord: lisekv1
+Wenn Sie Probleme mit dem Mod haben, kontaktieren Sie mich bitte über Discord: lisekv1]]>
 		</de>
+    <it>
+<![CDATA[Migliora le tue fabbriche! Questa mod ti permette di aumentare la velocità di produzione e la capacità di stoccaggio, così non hai bisogno di piazzare più fabbriche identiche.
+
+Caratteristiche:
+- Le catene produttive ora hanno livelli che possono essere migliorati.
+- Migliorare una fabbrica costa leggermente di più per livello rispetto alla costruzione di una nuova.
+- I costi di miglioramento sono compensati dall'aumento della velocità di produzione.
+- Una maggiore velocità di produzione comporta una maggiore capacità di stoccaggio.
+- Non dovendo costruire una nuova fabbrica, risparmi sui costi di produzione.
+- Il valore della fabbrica aumenta con i miglioramenti, permettendoti di recuperare l'investimento alla vendita.
+
+Informazioni aggiuntive:
+- Le seguenti fabbriche sono escluse dal miglioramento: Playground maker hall, Wagon builder (Riverbend Springs) e Piano manufacture (Zielonka)
+- Per impostazione predefinita, il livello massimo di miglioramento è 15. Questo può essere modificato nel file UpgradeYourFactory.xml o con il comando console uyfMaxLevel!
+
+Changelog 1.1.0.0:
+- Aggiunto supporto per la modalità multigiocatore
+- Aggiornata la struttura XML del salvataggio, risolto problema con gli indici fillType
+
+In caso di problemi con la mod, contattami su Discord: lisekv1]]>
+    </it>
     </description>
     <iconFilename>icon_UpgYourFactory.dds</iconFilename>
     <multiplayer supported="true"/>
     <extraSourceFiles>
         <sourceFile filename="UpgradeYourFactory.lua"/>
     </extraSourceFiles>
-    <l10n>
+<l10n>
         <text name="uyf_upgrade">
             <en>Upgrade</en>
             <pl>Ulepsz</pl>
             <fr>Améliorer</fr>
             <de>Upgrade</de>
+            <it>Migliora</it>
         </text>
-		<text name="uyf_downgrade">
-			<en>Downgrade</en>
-			<pl>Obniż poziom</pl>
-			<fr>Rétrograder</fr>
-			<de>Herabstufen</de>
-		</text>
+        <text name="uyf_downgrade">
+            <en>Downgrade</en>
+            <pl>Obniż poziom</pl>
+            <fr>Rétrograder</fr>
+            <de>Herabstufen</de>
+            <it>Declassa</it>
+        </text>
         <text name="uyf_upgrade_dialog">
             <en>Upgrade %s to level %d for %s?</en>
             <pl>Ulepszyć %s do poziomu %d za %s?</pl>
             <fr>Améliorer %s au niveau %s pour %s</fr>
             <de>Upgrade %s auf Stufe %d (%s)</de>
+            <it>Migliorare %s al livello %d per %s?</it>
         </text>
-		<text name="uyf_downgrade_dialog">
+        <text name="uyf_downgrade_dialog">
             <en>Downgrade %s to level %d?</en>
             <pl>Obniżyć poziom %s do poziomu %d?</pl>
             <fr>Rétrograder %s au niveau %d ?</fr>
             <de>%s auf Stufe %d herabstufen?</de>
+            <it>Declassare %s al livello %d?</it>
         </text>
         <text name="uyf_max_level">
             <en>Your production is already at maximum level.</en>
             <pl>Twoja produkcja jest już na maksymalnym poziomie.</pl>
             <fr>Votre usine est déjà au niveau maximum</fr>
             <de>Ihre Produktion ist bereits auf dem Höchststand.</de>
+            <it>La tua produzione è già al livello massimo.</it>
         </text>
         <text name="uyf_upgrade_factory">
             <en>Upgrade Factory</en>
             <pl>Ulepsz fabrykę</pl>
             <fr>Améliorer l'usine</fr>
             <de>Verbesserung die Fabrik</de>
+            <it>Migliora la Fabbrica</it>
         </text>
-		<text name="uyf_downgrade_factory">
+        <text name="uyf_downgrade_factory">
             <en>Downgrade Factory</en>
             <pl>Obniż poziom fabryki</pl>
             <fr>Rétrograder l'usine</fr>
             <de>Fabrik herabstufen</de>
+            <it>Declassa la Fabbrica</it>
         </text>
     </l10n>
 </modDesc>
