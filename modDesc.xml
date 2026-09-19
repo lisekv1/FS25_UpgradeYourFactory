@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<modDesc descVersion="111">
+<modDesc descVersion="113">
     <author>Lisek, GMNGJoy</author>
     <version>1.1.0.0</version>
     <contributors>Az#4971, olaf.tnt</contributors>
@@ -37,6 +37,7 @@ Changelog 1.1.0.0:
 - Added alphabetical sorting in the factory list.
 - Added Italian translation (by: FirenzeIT).
 - Improved sorting by level.
+- Fixed production efficiency at level 1.
 
 In case of any problems with the mod, please visit GitHub: https://github.com/lisekv1/FS25_UpgradeYourFactory or contact me via Discord: lisekv1]]>
         </en>
@@ -66,6 +67,7 @@ Dziennik zmian 1.1.0.0:
 - Dodano sortowanie alfabetyczne na liście fabryk.
 - Dodano tłumaczenie na język włoski (autor: FirenzeIT).
 - Ulepszono sortowanie według poziomu.
+- Naprawiono wydajność produkcji na poziomie 1.
 
 W razie problemów z modem zapraszam na github: https://github.com/lisekv1/FS25_UpgradeYourFactory lub do kontaktu poprzez Discord: lisekv1]]>
         </pl>
@@ -95,6 +97,7 @@ Journal des modifications 1.1.0.0
 - Ajout du tri alphabétique dans la liste des usines.
 - Traduction italienne ajoutée (par: FirenzeIT).
 - Tri par niveau amélioré.
+- Efficacité de production fixée au niveau 1.
 
 En cas de problème avec le mod, veuillez consulter GitHub: https://github.com/lisekv1/FS25_UpgradeYourFactory ou me contacter via Discord: lisekv1]]>
         </fr>
@@ -124,6 +127,7 @@ Zusatzinformation:
 - Alphabetische Sortierung in der Fabrikliste hinzugefügt.
 - Italienische Übersetzung hinzugefügt (von: FirenzeIT).
 - Verbesserte Sortierung nach Level.
+- Produktionseffizienz auf Stufe 1 festgelegt.
 
 Bei Problemen mit der Mod besuche bitte GitHub: https://github.com/lisekv1/FS25_UpgradeYourFactory oder kontaktiere mich über Discord: lisekv1]]>
         </de>
@@ -153,6 +157,7 @@ Changelog 1.1.0.0:
 - Aggiunto l'ordinamento alfabetico nell'elenco delle fabbriche.
 - Aggiunta la traduzione in italiano (a cura di: FirenzeIT).
 - Potenziato l'ordinamento per livello.
+- Efficienza di produzione fissata al livello 1.
 
 In caso di problemi con la mod, visita GitHub: https://github.com/lisekv1/FS25_UpgradeYourFactory o contattami su Discord: lisekv1]]>
         </it>
