@@ -82,13 +82,8 @@ end
 ---Production speed increase by it's base value each level.
 ---A bonus of 15% of the base speed is applied per level starting at the level 2
 local function getCycleAtLvl(cycle, lvl)
-	lvl = tonumber(lvl)
-	local adj = cycle * lvl + cycle * 0.15 * (lvl - 1)
-	if adj < 1 then
-		return adj
-	else
-		return math.floor(adj)
-	end
+    lvl = tonumber(lvl)
+    return cycle * lvl + cycle * 0.15 * (lvl - 1)
 end
 
 ---Running cost increase by it's base value each level

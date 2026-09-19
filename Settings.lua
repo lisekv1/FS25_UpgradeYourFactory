@@ -9,8 +9,8 @@ function Settings.new()
     local self = setmetatable({}, Settings_mt)
 
     -- set via in-game menu
-    self.maxLevel = SettingsManager.defaultConfig.maxLevel
-    self.sortByLevel = SettingsManager.defaultConfig.sortByLevel
+    self.maxLevel = UpgradeYourFactory.MAX_LEVEL
+	self.sortByLevel = UpgradeYourFactory.SORT_BY_LEVEL
 
     self:initializeListeners()
 
