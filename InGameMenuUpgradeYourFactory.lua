@@ -141,18 +141,17 @@ function InGameMenuUpgradeYourFactory:onButtonDowngrade()
 end
 
 function InGameMenuUpgradeYourFactory.onListSelectionChanged(pageProduction, list, section, index)
-    local prodpoints = pageProduction:getProductionPoints()
-    if #prodpoints > 0 then
-        local prodpoint = prodpoints[section]
-		if prodpoint ~= nil then
-			pageProduction.upgradeButtonInfo.disabled = not prodpoint.isUpgradable
-			pageProduction.downgradeButtonInfo.disabled = not prodpoint.isUpgradable or prodpoint.productionLevel <= 1
-		else
-			pageProduction.upgradeButtonInfo.disabled = true
-			pageProduction.downgradeButtonInfo.disabled = true
-		end	
-        pageProduction:setMenuButtonInfoDirty()
-    end
+    local _, prodpoint = pageProduction:getSelectedProduction()
+    
+	if prodpoint ~= nil then
+		pageProduction.upgradeButtonInfo.disabled = prodpoint.isUpgradable ~= true or prodpoint.productionLevel == nil
+        pageProduction.downgradeButtonInfo.disabled = prodpoint.isUpgradable ~= true or prodpoint.productionLevel == nil or prodpoint.productionLevel <= 1
+	else
+		pageProduction.upgradeButtonInfo.disabled = true
+        pageProduction.downgradeButtonInfo.disabled = true
+	end	
+    
+    pageProduction:setMenuButtonInfoDirty()
 end
 
 function InGameMenuUpgradeYourFactory.updateMenuButtons(pageProduction)
