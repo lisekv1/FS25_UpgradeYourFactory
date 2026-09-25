@@ -34,7 +34,7 @@ Changelog 1.1.0.0:
 - Added support for multiplayer mode.
 - Added level downgrade function.
 - Added in-game mod settings.
-- Added alphabetical sorting in the factory list.
+- Added alphabetical sorting in the factory list (Change in settings).
 - Added Italian translation (by: FirenzeIT).
 - Improved sorting by level.
 - Fixed production efficiency at level 1.
@@ -64,7 +64,7 @@ Dziennik zmian 1.1.0.0:
 - Dodano obsługę trybu wieloosobowego.
 - Dodano funkcję obniżania poziomu.
 - Dodano ustawienia moda w grze.
-- Dodano sortowanie alfabetyczne na liście fabryk.
+- Dodano sortowanie alfabetyczne na liście fabryk (Zmiana w ustawieniach).
 - Dodano tłumaczenie na język włoski (autor: FirenzeIT).
 - Ulepszono sortowanie według poziomu.
 - Naprawiono wydajność produkcji na poziomie 1.
@@ -94,7 +94,7 @@ Journal des modifications 1.1.0.0
 - Ajout de la prise en charge du mode multijoueur.
 - Ajout d'une fonction de rétrogradation de niveau.
 - Ajout des paramètres de mod en jeu.
-- Ajout du tri alphabétique dans la liste des usines.
+- Ajout du tri alphabétique dans la liste des usines (modification des paramètres).
 - Traduction italienne ajoutée (par: FirenzeIT).
 - Tri par niveau amélioré.
 - Efficacité de production fixée au niveau 1.
@@ -124,7 +124,7 @@ Zusatzinformation:
 - Unterstützung für den Mehrspielermodus hinzugefügt.
 - Funktion zur Herabstufung des Levels hinzugefügt.
 - Mod-Einstellungen im Spiel hinzugefügt.
-- Alphabetische Sortierung in der Fabrikliste hinzugefügt.
+- Alphabetische Sortierung in der Fabrikliste hinzugefügt (Änderung der Einstellungen).
 - Italienische Übersetzung hinzugefügt (von: FirenzeIT).
 - Verbesserte Sortierung nach Level.
 - Produktionseffizienz auf Stufe 1 festgelegt.
@@ -154,7 +154,7 @@ Changelog 1.1.0.0:
 - Aggiunto il supporto per la modalità multigiocatore.
 - Aggiunta la funzione di riduzione livello.
 - Aggiunte le impostazioni della mod all'interno del gioco.
-- Aggiunto l'ordinamento alfabetico nell'elenco delle fabbriche.
+- Aggiunto l'ordinamento alfabetico nell'elenco delle fabbriche (modifica delle impostazioni).
 - Aggiunta la traduzione in italiano (a cura di: FirenzeIT).
 - Potenziato l'ordinamento per livello.
 - Efficienza di produzione fissata al livello 1.
