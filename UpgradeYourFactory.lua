@@ -135,7 +135,7 @@ local function prodPointNameWithLevel(basename, level, prodpoint, sortByLevel)
 
     if g_server ~= nil or (farmId > 0 and farmId ~= FarmManager.SPECTATOR_FARM_ID) then
 		if sortByLevel then
-			return string.format("%d - %s", level, basename)
+			return string.format("%02d - %s", level, basename)
 		else
 			return string.format("%s [Lv:%d]", basename, level)
 		end
