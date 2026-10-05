@@ -417,7 +417,7 @@ function UpgradeYourFactory.saveToXML()
 							if ft ~= nil then
 								key2 = key .. string.format(".fillLevels.fillLevel(%d)", fCounter)
 								xmlFile:setString(key2 .. "#fillType", string.upper(ft.name))
-								xmlFile:setInt(key2 .. "#storage", fillLevel)
+								xmlFile:setFloat(key2 .. "#storage", fillLevel)
 								fCounter = fCounter + 1
 							end	
 						end
@@ -468,7 +468,7 @@ function UpgradeYourFactory:loadXML()
 			-- new values
 			local newKey = key .. string.format(".fillLevels.fillLevel(%d)", fillLevelCounter)
 			local newFillTypeName = getXMLString(xmlFile.handle, newKey .. "#fillType")
-			local newStorage = getXMLInt(xmlFile.handle, newKey .. "#storage", 0)
+			local newStorage = getXMLFloat(xmlFile.handle, newKey .. "#storage") or 0
 
 			local fillLevel
 			local fillTypeName
