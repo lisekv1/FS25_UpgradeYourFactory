@@ -228,41 +228,21 @@ function UpgradeProductionEvent:initializeListeners()
     end)
 end
 
-
 -- Hook into basegame ProductionPoint.writeStream event.
 local ProductionPoint_writeStream = ProductionPoint.writeStream
+
 function ProductionPoint:writeStream(streamId, connection)
-    ProductionPoint_writeStream(self, streamId, connection)
     streamWriteInt8(streamId, self.productionLevel or 0)
-    -- UYFInfo("ProductionPoint :: writeStream '%s'", self.name)
+    ProductionPoint_writeStream(self, streamId, connection)
 end
 
 -- Hook into basegame ProductionPoint.readStream event.
--- local ProductionPoint_readStream = ProductionPoint.readStream
--- function ProductionPoint:readStream(streamId, connection)
-    -- ProductionPoint_readStream(self, streamId, connection)
-    -- local lvl = streamReadInt8(streamId)
-    -- UYFInfo("ProductionPoint :: readStream '%s' with level %d", self.name, lvl)
-
-    -- -- addon for UpgradeYourFactory to adjust the productionPoint.
-    -- if lvl ~= nil and lvl >= 1 then
-        -- self.productionLevel = lvl
-        -- if UpgradeYourFactory and UpgradeYourFactory.adjProdPoint2lvl then
-            -- UpgradeYourFactory:adjProdPoint2lvl(self, lvl)
-        -- end
-    -- end
--- end
-
 local ProductionPoint_readStream = ProductionPoint.readStream
 
 function ProductionPoint:readStream(streamId, connection)
-	ProductionPoint_readStream(self, streamId, connection)
+    local lvl = streamReadInt8(streamId)
 
-	local lvl = streamReadInt8(streamId)
-
-	-- UYFInfo("ProductionPoint :: readStream '%s' with level %d", tostring(self.name), lvl)
-
-	if lvl ~= nil and lvl >= 1 then
+    if lvl ~= nil and lvl >= 1 then
 		if self.isUpgradable == nil and UpgradeYourFactory ~= nil and UpgradeYourFactory.initializeProduction ~= nil then
 			UpgradeYourFactory:initializeProduction(self)
 		end
@@ -275,4 +255,6 @@ function ProductionPoint:readStream(streamId, connection)
 			end
 		end
 	end
+
+	ProductionPoint_readStream(self, streamId, connection)
 end
