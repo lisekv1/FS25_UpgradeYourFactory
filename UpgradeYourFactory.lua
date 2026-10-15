@@ -57,21 +57,30 @@ function UpgradeYourFactory:onSavegameLoaded()
 	-- UYFInfo("Global MaxLevel currently set to: "..self.MAX_LEVEL)
 end
 
----Local helper function to get the production point based on it's placeable position on the map
-local function getProductionPointFromPosition(pos)
-	if g_currentMission.productionChainManager.farmIds == nil then
-		return nil
-	end
-	
-	for _, farmData in pairs(g_currentMission.productionChainManager.farmIds) do
-		for _,prod in ipairs(farmData.productionPoints) do
-			local x, y, z = getWorldTranslation(prod.owningPlaceable.rootNode)
-			if MathUtil.getPointPointDistanceSquared(pos.x, pos.z, x, z) < 0.0001 then
-				return prod
-			end
-		end
-	end
-	return nil
+---Local helper function to get the production point based on its placeable position, unique ID and base name
+local function getProductionPointFromPosition(position, uniqueId, baseName, assignedProductionPoints)
+    if g_currentMission.productionChainManager.farmIds == nil then
+        return nil
+    end
+
+    for _, farmData in pairs(g_currentMission.productionChainManager.farmIds) do
+        for _, productionPoint in ipairs(farmData.productionPoints) do
+            if not assignedProductionPoints[productionPoint] then
+                local placeable = productionPoint.owningPlaceable
+                local x, y, z = getWorldTranslation(placeable.rootNode)
+
+                local samePosition = MathUtil.getPointPointDistanceSquared(position.x, position.z, x, z) < 0.0001
+                local sameUniqueId = uniqueId == nil or placeable:getUniqueId() == uniqueId
+                local sameBaseName = baseName == nil or productionPoint.baseName == baseName
+
+                if samePosition and sameUniqueId and sameBaseName then
+                    return productionPoint
+                end
+            end
+        end
+    end
+
+    return nil
 end
 
 ---Strorage capacity increase by it's base value each level
@@ -209,8 +218,10 @@ function UpgradeYourFactory:initializeLoadedProductions()
 	local isMP = g_currentMission.missionDynamicInfo.isMultiplayer
 	local forcedFarmId = 1
 
+	local assignedProductionPoints = {}
+
 	for _, loadedProd in ipairs(self.loadedProductions) do
-		local prodpoint = getProductionPointFromPosition(loadedProd.position)
+		local prodpoint = getProductionPointFromPosition(loadedProd.position, loadedProd.uniqueId, loadedProd.baseName, assignedProductionPoints)
 		if prodpoint ~= nil then
 			local placeable = prodpoint.owningPlaceable
 			local currentFarmId = placeable:getOwnerFarmId()
@@ -222,6 +233,7 @@ function UpgradeYourFactory:initializeLoadedProductions()
 
 			if (isMP and currentFarmId == loadedProd.farmId) or (not isMP and currentFarmId == 1) then
 				if prodpoint.isUpgradable then
+					assignedProductionPoints[prodpoint] = true
 					prodpoint.productionLevel = loadedProd.level
 					-- adjust the prodction point to the latest level
 					self:adjProdPoint2lvl(prodpoint, loadedProd.level)
@@ -403,6 +415,16 @@ function UpgradeYourFactory.saveToXML()
 						xmlFile:setInt(key .. "#farmId", prodpoint.owningPlaceable:getOwnerFarmId() or 0)
 						xmlFile:setInt(key .. "#level", prodpoint.productionLevel)
 
+						local uniqueId = prodpoint.owningPlaceable:getUniqueId()
+
+						if uniqueId ~= nil then
+							xmlFile:setString(key .. "#uniqueId", uniqueId)
+						end
+
+						if prodpoint.baseName ~= nil then
+							xmlFile:setString(key .. "#baseName", prodpoint.baseName)
+						end
+
 						local key2 = key .. ".position"
 
 						local x, y, z = getWorldTranslation(prodpoint.owningPlaceable.rootNode)
@@ -497,6 +519,8 @@ function UpgradeYourFactory:loadXML()
 			{
 				level = level,
 				farmId = getXMLInt(xmlFile.handle, key .. "#farmId") or 0,
+				uniqueId = getXMLString(xmlFile.handle, key .. "#uniqueId"),
+				baseName = getXMLString(xmlFile.handle, key .. "#baseName"),
 				position = {
 					x = getXMLFloat(xmlFile.handle, key .. ".position#x"),
 					y = getXMLFloat(xmlFile.handle, key .. ".position#y"),
