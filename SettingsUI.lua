@@ -73,7 +73,6 @@ end
 function SettingsUI:onSettingsChange(control)
     self:updateUiElements()
 
-    -- UIHelper wcześniej zapisał już poprawną wartość number/boolean.
     local newValue = g_currentMission.uyf[control.name]
 
     -- Logging.info(
