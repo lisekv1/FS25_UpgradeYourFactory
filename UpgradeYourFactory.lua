@@ -326,7 +326,7 @@ function UpgradeYourFactory.setOwnerFarmId(prodpoint, farmId)
 
     if farmId > 0 and prodpoint.isUpgradable then
         local lvl = prodpoint.productionLevel or 1
-        prodpoint.name = string.format("%d - %s", lvl, prodpoint.baseName)
+        prodpoint.name = prodPointNameWithLevel(prodpoint.baseName, lvl, prodpoint, self.SORT_BY_LEVEL)
     end
 end
 
