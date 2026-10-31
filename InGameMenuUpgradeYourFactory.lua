@@ -27,6 +27,11 @@ end
 
 function InGameMenuUpgradeYourFactory:onButtonUpgrade()
     local _, prodpoint = self.pageProduction:getSelectedProduction()
+
+    if prodpoint ~= nil and prodpoint.uyfLevelChangePending == true then
+        return
+    end
+
 	if prodpoint == nil or prodpoint.isUpgradable ~= true or prodpoint.productionLevel == nil or prodpoint.owningPlaceable == nil or prodpoint.owningPlaceable.upgradePrice == nil then
 		return
 	end
@@ -88,6 +93,11 @@ end
 
 function InGameMenuUpgradeYourFactory:onButtonDowngrade()
     local _, prodpoint = self.pageProduction:getSelectedProduction()
+
+    if prodpoint ~= nil and prodpoint.uyfLevelChangePending == true then
+        return
+    end
+
 	if prodpoint == nil or prodpoint.isUpgradable ~= true or prodpoint.productionLevel == nil or prodpoint.owningPlaceable == nil then
 		return
 	end
@@ -144,8 +154,8 @@ function InGameMenuUpgradeYourFactory.onListSelectionChanged(pageProduction, lis
     local _, prodpoint = pageProduction:getSelectedProduction()
     
 	if prodpoint ~= nil then
-		pageProduction.upgradeButtonInfo.disabled = prodpoint.isUpgradable ~= true or prodpoint.productionLevel == nil
-        pageProduction.downgradeButtonInfo.disabled = prodpoint.isUpgradable ~= true or prodpoint.productionLevel == nil or prodpoint.productionLevel <= 1
+		pageProduction.upgradeButtonInfo.disabled = prodpoint.isUpgradable ~= true or prodpoint.productionLevel == nil or prodpoint.uyfLevelChangePending == true
+        pageProduction.downgradeButtonInfo.disabled = prodpoint.isUpgradable ~= true or prodpoint.productionLevel == nil or prodpoint.productionLevel <= 1 or prodpoint.uyfLevelChangePending == true
 	else
 		pageProduction.upgradeButtonInfo.disabled = true
         pageProduction.downgradeButtonInfo.disabled = true

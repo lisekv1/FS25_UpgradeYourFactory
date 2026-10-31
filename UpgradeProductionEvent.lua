@@ -104,24 +104,27 @@ function UpgradeProductionEvent:runUpgrade(connection)
 		
 		local maxLevel = g_currentMission.uyf and g_currentMission.uyf.maxLevel or UpgradeYourFactory.MAX_LEVEL
 
-		if prodpoint.productionLevel >= maxLevel then
-			-- UYFInfo("UpgradeProductionEvent :: max level reached (%d/%d)", prodpoint.productionLevel, maxLevel)
-			return
-		end
-		
-		self.newLevel = prodpoint.productionLevel + 1
-		
-        local farmId = prodpoint.owningPlaceable:getOwnerFarmId()
-        local price = prodpoint.owningPlaceable.upgradePrice or 0
+		local currentLevel = prodpoint.productionLevel or 1
+        local expectedLevel = currentLevel + 1
 
-        if price > 0 then
-            g_currentMission:addMoney(-price, farmId, MoneyType.SHOP_PROPERTY_BUY, true, true)
+        if currentLevel >= maxLevel or self.newLevel ~= expectedLevel then
+            self.newLevel = currentLevel
+        else
+            self.newLevel = expectedLevel
+
+            local farmId = prodpoint.owningPlaceable:getOwnerFarmId()
+            local price = prodpoint.owningPlaceable.upgradePrice or 0
+
+            if price > 0 then
+                g_currentMission:addMoney(-price, farmId, MoneyType.SHOP_PROPERTY_BUY, true, true)
+            end
         end
     end
 
     if prodpoint ~= nil then
         local oldLevel = prodpoint.productionLevel or 0
         prodpoint.productionLevel = self.newLevel
+        prodpoint.uyfLevelChangePending = false
         if UpgradeYourFactory and UpgradeYourFactory.adjProdPoint2lvl then
             UpgradeYourFactory:adjProdPoint2lvl(prodpoint, self.newLevel)
         end
@@ -183,19 +186,28 @@ function UpgradeProductionEvent:runDowngrade(connection)
     end
 
     if g_currentMission ~= nil and g_currentMission:getIsServer() and prodpoint ~= nil then
-		local farmId = prodpoint.owningPlaceable:getOwnerFarmId()
-		local oldLevel = prodpoint.productionLevel or 0
-		local basePrice = prodpoint.owningPlaceable.price or 0
-		local price = math.floor(basePrice + basePrice * 0.1 * (oldLevel - 1))
+        local currentLevel = prodpoint.productionLevel or 1
+        local expectedLevel = currentLevel - 1
 
-		if price > 0 then
-			g_currentMission:addMoney(price, farmId, MoneyType.SHOP_PROPERTY_BUY, true, true)
-		end
-	end
+        if currentLevel <= 1 or self.newLevel ~= expectedLevel then
+            self.newLevel = currentLevel
+        else
+            self.newLevel = expectedLevel
+
+            local farmId = prodpoint.owningPlaceable:getOwnerFarmId()
+            local basePrice = prodpoint.owningPlaceable.price or 0
+            local price = math.floor(basePrice + basePrice * 0.1 * (currentLevel - 1))
+
+            if price > 0 then
+                g_currentMission:addMoney(price, farmId, MoneyType.SHOP_PROPERTY_BUY, true, true)
+            end
+        end
+    end
 
     if prodpoint ~= nil then
         local oldLevel = prodpoint.productionLevel or 0
         prodpoint.productionLevel = self.newLevel
+        prodpoint.uyfLevelChangePending = false
         if UpgradeYourFactory and UpgradeYourFactory.adjProdPoint2lvl then
             UpgradeYourFactory:adjProdPoint2lvl(prodpoint, self.newLevel)
         end

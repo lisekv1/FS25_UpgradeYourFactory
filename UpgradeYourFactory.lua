@@ -326,7 +326,7 @@ function UpgradeYourFactory.setOwnerFarmId(prodpoint, farmId)
 
     if farmId > 0 and prodpoint.isUpgradable then
         local lvl = prodpoint.productionLevel or 1
-        prodpoint.name = prodPointNameWithLevel(prodpoint.baseName, lvl, prodpoint, self.SORT_BY_LEVEL)
+        prodpoint.name = prodPointNameWithLevel(prodpoint.baseName, lvl, prodpoint, UpgradeYourFactory.SORT_BY_LEVEL)
     end
 end
 
@@ -561,6 +561,12 @@ function UpgradeYourFactory:upgradeProduction(prodpoint)
         return
     end
 
+	if prodpoint.uyfLevelChangePending == true then
+		return
+	end
+
+	prodpoint.uyfLevelChangePending = true
+
     local newLevel = prodpoint.productionLevel + 1
     local event = UpgradeProductionEvent.new(prodpoint, newLevel)
 
@@ -579,6 +585,12 @@ function UpgradeYourFactory:downgradeProduction(prodpoint)
     if prodpoint.productionLevel <= 1 then
         return
     end
+
+	if prodpoint.uyfLevelChangePending == true then
+		return
+	end
+
+	prodpoint.uyfLevelChangePending = true
 
     local newLevel = prodpoint.productionLevel - 1
     local event = UpgradeProductionEvent.new(prodpoint, newLevel, true)
