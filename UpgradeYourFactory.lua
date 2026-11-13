@@ -92,12 +92,8 @@ end
 ---A bonus of 15% of the base speed is applied per level starting at the level 2
 local function getCycleAtLvl(cycle, lvl)
     lvl = tonumber(lvl)
-	local adj = cycle * lvl + cycle * 0.15 * (lvl - 1)
-	if lvl <= 1 then
-        return adj
-    else
-        return math.floor(adj)
-    end
+    local adj = cycle * lvl + cycle * 0.15 * (lvl - 1)
+    return adj
 end
 
 ---Running cost increase by it's base value each level
@@ -105,11 +101,7 @@ end
 local function getActiveCostAtLvl(cost, lvl)
 	lvl = tonumber(lvl)
 	local adj = cost * lvl - cost * 0.1 * (lvl - 1)
-	if adj < 1 then
-		return adj
-	else
-		return math.floor(adj)
-	end
+	return adj
 end
 
 ---Discharge speed to match each level
